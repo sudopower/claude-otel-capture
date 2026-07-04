@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace">
+  <rect width="1200" height="640" fill="#0d1117"/>
+
+  <!-- title -->
+  <text x="60" y="70" fill="#c9d1d9" font-size="26" font-weight="700">claude_usage.csv, one real session</text>
+  <text x="60" y="98" fill="#8b949e" font-size="15">three models, three tool calls, aggregated straight from the CSV</text>
+
+  <!-- Panel A: cost by model -->
+  <text x="60" y="150" fill="#8b949e" font-size="14" letter-spacing="0.05em">COST BY MODEL ($)</text>
+  <line x1="60" y1="162" x2="1140" y2="162" stroke="#30363d" stroke-width="1"/>
+
+  <!-- row: sonnet -->
+  <circle cx="66" cy="205" r="5" fill="#3987e5"/>
+  <text x="82" y="210" fill="#c9d1d9" font-size="14">claude-sonnet-5</text>
+  <rect x="360" y="193" width="461" height="24" rx="4" fill="#3987e5"/>
+  <text x="833" y="210" fill="#c9d1d9" font-size="14">$0.3368</text>
+
+  <!-- row: haiku -->
+  <circle cx="66" cy="245" r="5" fill="#199e70"/>
+  <text x="82" y="250" fill="#c9d1d9" font-size="14">claude-haiku-4-5</text>
+  <rect x="360" y="233" width="85" height="24" rx="4" fill="#199e70"/>
+  <text x="457" y="250" fill="#c9d1d9" font-size="14">$0.0623</text>
+
+  <!-- row: opus -->
+  <circle cx="66" cy="285" r="5" fill="#c98500"/>
+  <text x="82" y="290" fill="#c9d1d9" font-size="14">claude-opus-4-8</text>
+  <rect x="360" y="273" width="560" height="24" rx="4" fill="#c98500"/>
+  <text x="932" y="290" fill="#c9d1d9" font-size="14">$0.4095</text>
+
+  <!-- divider between panels -->
+  <line x1="60" y1="340" x2="1140" y2="340" stroke="#30363d" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Panel B: tool calls -->
+  <text x="60" y="378" fill="#8b949e" font-size="14" letter-spacing="0.05em">TOOL CALLS BY TOOL</text>
+  <line x1="60" y1="390" x2="1140" y2="390" stroke="#30363d" stroke-width="1"/>
+
+  <!-- row: Read -->
+  <circle cx="66" cy="433" r="5" fill="#3987e5"/>
+  <text x="82" y="438" fill="#c9d1d9" font-size="14">Read</text>
+  <rect x="360" y="421" width="560" height="24" rx="4" fill="#3987e5"/>
+  <text x="932" y="438" fill="#c9d1d9" font-size="14">2 calls</text>
+
+  <!-- row: Grep -->
+  <circle cx="66" cy="473" r="5" fill="#199e70"/>
+  <text x="82" y="478" fill="#c9d1d9" font-size="14">Grep</text>
+  <rect x="360" y="461" width="280" height="24" rx="4" fill="#199e70"/>
+  <text x="652" y="478" fill="#c9d1d9" font-size="14">1 call</text>
+
+  <!-- row: Glob -->
+  <circle cx="66" cy="513" r="5" fill="#c98500"/>
+  <text x="82" y="518" fill="#c9d1d9" font-size="14">Glob</text>
+  <rect x="360" y="501" width="280" height="24" rx="4" fill="#c98500"/>
+  <text x="652" y="518" fill="#c9d1d9" font-size="14">1 call</text>
+
+  <!-- footer -->
+  <line x1="60" y1="560" x2="1140" y2="560" stroke="#30363d" stroke-width="1"/>
+  <text x="60" y="598" fill="#c9d1d9" font-size="18">$0.81 total, 3 models, 4 tool calls, from one `claude -p` run each</text>
+  <text x="60" y="622" fill="#484f58" font-size="13">grouped straight out of the 16-column CSV, no dashboard required</text>
+</svg>

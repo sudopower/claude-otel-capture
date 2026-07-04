@@ -35,6 +35,26 @@ That's it — `claude_usage.csv` updates itself every 5 seconds while the stack 
 `tool_result` (tool_name, success, duration_ms, error_type), and `tool_decision`
 (tool_name, decision, source) event, joined by `session_id`.
 
+## Sample output
+
+Real rows from a live session (three `claude -p` calls, three models):
+
+| timestamp | session_id | event_type | model | tool_name | decision | success | cost_usd | duration_ms |
+|---|---|---|---|---|---|---|---|---|
+| 2026-07-04T19:41:05.216Z | 4255b08c... | tool_decision | | Read | accept | | | |
+| 2026-07-04T19:41:05.218Z | 4255b08c... | api_request | claude-sonnet-5 | | | | 0.076066 | 2958 |
+| 2026-07-04T19:41:05.221Z | 4255b08c... | tool_result | | Read | | true | | 5 |
+| 2026-07-04T19:41:46.045Z | 4a4f71f6... | tool_decision | | Grep | accept | | | |
+| 2026-07-04T19:41:46.052Z | 4a4f71f6... | api_request | claude-opus-4-8 | | | | 0.26328 | 4415 |
+
+Grouped by model and by tool, the same session looks like this:
+
+![Cost by model and tool calls by tool, from a real claude_usage.csv](images/usage-chart.svg)
+
+And the collector receiving it, end to end:
+
+![docker compose ps and awk against a real claude_usage.csv](images/terminal-sample.svg)
+
 ## Gotchas
 
 - **Telemetry env vars must be set before `claude` starts.** There's no way to turn on

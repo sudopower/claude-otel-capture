@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
+  <rect width="1200" height="560" fill="#0d1117"/>
+
+  <!-- terminal window chrome -->
+  <rect x="60" y="40" width="1080" height="480" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <rect x="60" y="40" width="1080" height="38" rx="8" fill="#21262d"/>
+  <rect x="60" y="66" width="1080" height="12" fill="#21262d"/>
+  <circle cx="88" cy="59" r="6" fill="#ff5f57"/>
+  <circle cx="110" cy="59" r="6" fill="#febc2e"/>
+  <circle cx="132" cy="59" r="6" fill="#28c840"/>
+  <text x="600" y="64" font-family="monospace" font-size="13" fill="#8b949e" text-anchor="middle">bash: observe-claude, live capture</text>
+
+  <!-- docker compose ps -->
+  <text x="92" y="118" font-family="monospace" font-size="14" fill="#3fb950">$</text>
+  <text x="108" y="118" font-family="monospace" font-size="14" fill="#c9d1d9">docker compose ps</text>
+
+  <text x="92" y="148" font-family="monospace" font-size="12.5" fill="#8b949e">NAME                              IMAGE                                    STATUS       PORTS</text>
+  <line x1="92" y1="156" x2="1108" y2="156" stroke="#30363d" stroke-width="1"/>
+  <text x="92" y="178" font-family="monospace" font-size="12.5" fill="#c9d1d9">observe-claude-otel-collector-1  otel/opentelemetry-collector-contrib    Up 4 hours   127.0.0.1:4317-4318</text>
+  <text x="92" y="200" font-family="monospace" font-size="12.5" fill="#c9d1d9">observe-claude-csv-writer-1      python:3.12-slim                        Up 4 hours</text>
+
+  <!-- second prompt: api_request rows -->
+  <text x="92" y="248" font-family="monospace" font-size="14" fill="#3fb950">$</text>
+  <text x="108" y="248" font-family="monospace" font-size="14" fill="#c9d1d9">awk -F, '$3=="api_request"{printf "%s  %-28s $%s\n",substr($1,12,8),$4,$10}' claude_usage.csv</text>
+
+  <text x="92" y="278" font-family="monospace" font-size="12.5" fill="#8b949e">TIME        MODEL                         COST</text>
+  <line x1="92" y1="286" x2="700" y2="286" stroke="#30363d" stroke-width="1"/>
+  <text x="92" y="308" font-family="monospace" font-size="13" fill="#3987e5">19:40:39    claude-sonnet-5               $0.2475</text>
+  <text x="92" y="330" font-family="monospace" font-size="13" fill="#199e70">19:41:38    claude-haiku-4-5              $0.0585</text>
+  <text x="92" y="352" font-family="monospace" font-size="13" fill="#c98500">19:41:46    claude-opus-4-8               $0.2633</text>
+
+  <!-- third prompt: tool_decision rows -->
+  <text x="92" y="400" font-family="monospace" font-size="14" fill="#3fb950">$</text>
+  <text x="108" y="400" font-family="monospace" font-size="14" fill="#c9d1d9">awk -F, '$3=="tool_decision"{printf "%s  %-8s %-8s\n",substr($1,12,8),$5,$6}' claude_usage.csv</text>
+
+  <text x="92" y="430" font-family="monospace" font-size="12.5" fill="#8b949e">TIME        TOOL      DECISION</text>
+  <line x1="92" y1="438" x2="500" y2="438" stroke="#30363d" stroke-width="1"/>
+  <text x="92" y="460" font-family="monospace" font-size="13" fill="#c9d1d9">19:41:05    Read      accept</text>
+  <text x="92" y="482" font-family="monospace" font-size="13" fill="#c9d1d9">19:41:46    Grep      accept</text>
+  <text x="92" y="504" font-family="monospace" font-size="13" fill="#c9d1d9">19:41:50    Glob      accept</text>
+
+  <text x="600" y="536" font-family="monospace" font-size="12" fill="#484f58" text-anchor="middle">real output from a live session, captured by the collector with zero manual steps</text>
+</svg>
