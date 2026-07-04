@@ -1,0 +1,21 @@
+services:
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    restart: unless-stopped
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+      - ./data:/var/log/otel
+    ports:
+      - "127.0.0.1:4317:4317" # OTLP gRPC (localhost-only: no auth on this receiver)
+      - "127.0.0.1:4318:4318" # OTLP HTTP
+
+  csv-writer:
+    image: python:3.12-slim
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: >
+      sh -c "while true; do python3 parse_to_csv.py --input-file data/claude-events.jsonl --output-file claude_usage.csv; sleep 5; done"
+    depends_on:
+      - otel-collector
