@@ -16,6 +16,6 @@ services:
       - .:/app
     working_dir: /app
     command: >
-      sh -c "while true; do python3 parse_to_csv.py --input-file data/claude-events.jsonl --output-file claude_usage.csv; sleep 5; done"
+      sh -c "while true; do python3 parse_to_csv.py --input-file data/claude-events.jsonl --output-file claude_usage.csv --spans-output-file claude_spans.csv; sleep 5; done"
     depends_on:
       - otel-collector
