@@ -119,6 +119,14 @@ Sonnet subagent's turn, nested under `tool.execution` and stamped with its `agen
   network can inject fake telemetry into your collector.
 - The captured JSONL includes `user.email` and account/org UUIDs (prompt/response text is
   redacted by default). Don't commit `data/` or `*.csv` — both are already gitignored.
+- **The root `claude_code.interaction` span is missing until the session ends.** Spans
+  export when they close, not when they open, so the collector only receives finished
+  spans. Leaf spans (`llm_request`, `tool`) close per step and arrive within seconds, but
+  the interaction span wrapping the whole session stays open until the session exits: a
+  one-shot `claude -p` run has its root, a long-running interactive session does not (every
+  captured span points at a `parent_span_id` that never arrives). Closing the session
+  flushes the root on shutdown, so keep the collector up until then, and don't `make
+  restart` right as you close (it truncates the JSONL and you lose that final span).
 
 ## Phase 2 (later)
 
