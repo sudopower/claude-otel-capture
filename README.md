@@ -30,6 +30,15 @@ claude
 # ... use Claude Code normally ...
 ```
 
+Or use the `Makefile`, which wraps the same steps (and sources `env.sh` for you):
+
+```bash
+make up        # start collector + csv-writer
+make session   # launch a telemetry-enabled Claude Code session (ARGS=... to pass flags)
+make down      # stop the stack when done
+make help      # list all targets (csv, reset, logs, ps, ...)
+```
+
 That's it — both CSVs update themselves every 5 seconds while the stack is up.
 
 Two things matter in `env.sh`: everything has to be exported *before* `claude` starts
